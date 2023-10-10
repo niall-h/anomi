@@ -20,7 +20,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { firstName, lastName, email, phoneNumber, ticketCount } = req.body;
+  const { firstName, lastName, email, phoneNumber, ticketCount, basePrice } =
+    req.body;
   const nanoid = customAlphabet(
     "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
     6
@@ -31,6 +32,9 @@ export default async function handler(
   if (!isInputValid(firstName, lastName, email, phoneNumber, ticketCount)) {
     res.status(500).json({ message: "One of the input values is invalid" });
   }
+
+  const cost: number = Math.round((100 * (basePrice + 0.3)) / 0.971);
+  console.log(cost);
 
   if (req.method === "POST") {
     try {
@@ -43,7 +47,7 @@ export default async function handler(
               product_data: {
                 name: "ANOMI Presents: EAR Scenario - GA Tickets",
               },
-              unit_amount: 1500,
+              unit_amount: cost,
             },
             quantity: ticketCount,
           },

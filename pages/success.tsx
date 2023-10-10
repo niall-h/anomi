@@ -1,10 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import Head from "next/head";
 import { useSearchParams } from "next/navigation";
+import background from "@/public/images/VCRbackground.gif";
 
 export default function Success() {
   const searchParams = useSearchParams();
   const confirmationCode = searchParams.get("confirmation");
+
   return (
     <>
       <Head>
@@ -18,6 +20,9 @@ export default function Success() {
         justifyContent="center"
         alignItems="center"
         textAlign="center"
+        sx={{
+          background: `url(${background.src}) center / cover`,
+        }}
       >
         <Box width="70%">
           <Typography variant="h2" color="white" mb={5}>

@@ -3,3 +3,9 @@ body {
   padding: 0;
   margin: 0;
 }
+
+@font-face {
+  font-family: VCR;
+  src: url("/fonts/VCR_OSD_MONO_1.001.ttf");
+  font-display: swap;
+}

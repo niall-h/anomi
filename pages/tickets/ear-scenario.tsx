@@ -17,9 +17,9 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import EVENT_POSTER from "@/public/images/Oct_21_Rave_Merged_Square.jpg";
 import Image from "next/image";
-import axios from "axios";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import background from "@/public/images/VCRbackground.gif";
 
 export default function EAR() {
   const router = useRouter();
@@ -47,6 +47,7 @@ export default function EAR() {
           email: email,
           phoneNumber: phoneNumber,
           ticketCount: ticketCount,
+          basePrice: 15,
         }),
       });
 
@@ -74,15 +75,20 @@ export default function EAR() {
       <Box
         width="100vw"
         height={{ md: "100vh", xs: "fit-content" }}
-        bgcolor="black"
         display="flex"
         justifyContent="center"
         alignItems="center"
         textAlign="center"
+        sx={{
+          background: `url(${background.src}) center / cover`,
+        }}
       >
         <Container maxWidth="md">
           <Card sx={{ py: 2, my: { md: 0, xs: 2 } }}>
-            <CardHeader title="Tickets" subheader={"$" + ticketCount * 15} />
+            <CardHeader
+              title="Tickets"
+              subheader={"$" + ticketCount * 15 + " + fees"}
+            />
             <CardContent>
               <Grid container>
                 <Grid item xs={12} md={6}>
@@ -103,7 +109,7 @@ export default function EAR() {
                     >
                       <RemoveCircleOutlineIcon />
                     </IconButton>
-                    <Typography variant="h4" color="primary" sx={{ mx: 3 }}>
+                    <Typography variant="h4" sx={{ mx: 3 }}>
                       {ticketCount}
                     </Typography>
                     <IconButton

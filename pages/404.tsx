@@ -1,5 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
 import Head from "next/head";
+import background from "@/public/images/VCRbackground.gif";
 
 export default function Custom404() {
   return (
@@ -15,6 +16,9 @@ export default function Custom404() {
         justifyContent="center"
         alignItems="center"
         textAlign="center"
+        sx={{
+          background: `url(${background.src}) center / cover`,
+        }}
       >
         <Container maxWidth="md">
           <Typography variant="h3" color="white">
